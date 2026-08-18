@@ -1,0 +1,80 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "NEIS Open API (extracted)",
+    "version": "1.0.0",
+    "description": "OpenAPI generated from provided Excel spec (학교기본정보, 급식식단정보). Review and refine schemas as needed."
+  },
+  "servers": [
+    { "url": "https://open.neis.go.kr" }
+  ],
+  "components": {
+    "securitySchemes": {
+      "ApiKeyQuery": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "Key"
+      }
+    }
+  },
+  "paths": {
+    "/hub/schoolInfo": {
+      "get": {
+        "summary": "학교기본정보 조회",
+        "description": "학교 기본 정보를 조회합니다.",
+        "security": [{ "ApiKeyQuery": [] }],
+        "parameters": [
+          { "name": "Key", "in": "query", "required": true, "schema": { "type": "string" }, "description": "인증키" },
+          { "name": "Type", "in": "query", "required": false, "schema": { "type": "string", "enum": ["xml", "json"] }, "description": "응답 형식 (xml 또는 json)" },
+          { "name": "pIndex", "in": "query", "required": false, "schema": { "type": "integer", "default": 1 }, "description": "페이지 위치" },
+          { "name": "pSize", "in": "query", "required": false, "schema": { "type": "integer", "default": 100 }, "description": "페이지당 건수" },
+          { "name": "ATPT_OFCDC_SC_CODE", "in": "query", "required": false, "schema": { "type": "string" }, "description": "시도교육청코드" },
+          { "name": "SD_SCHUL_CODE", "in": "query", "required": false, "schema": { "type": "string" }, "description": "학교 코드" },
+          { "name": "SCHUL_NM", "in": "query", "required": false, "schema": { "type": "string" }, "description": "학교명" },
+          { "name": "SCHUL_KND_SC_NM", "in": "query", "required": false, "schema": { "type": "string" }, "description": "학교 종류" },
+          { "name": "LCTN_SC_NM", "in": "query", "required": false, "schema": { "type": "string" }, "description": "시도명" },
+          { "name": "FOND_SC_NM", "in": "query", "required": false, "schema": { "type": "string" }, "description": "설립구분" }
+        ],
+        "responses": {
+          "200": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hub/mealServiceDietInfo": {
+      "get": {
+        "summary": "급식 식단 정보 조회",
+        "description": "급식 식단 정보를 조회합니다.",
+        "security": [{ "ApiKeyQuery": [] }],
+        "parameters": [
+          { "name": "Key", "in": "query", "required": true, "schema": { "type": "string" }, "description": "인증키" },
+          { "name": "Type", "in": "query", "required": false, "schema": { "type": "string", "enum": ["xml", "json"] }, "description": "응답 형식 (xml 또는 json)" },
+          { "name": "pIndex", "in": "query", "required": false, "schema": { "type": "integer", "default": 1 }, "description": "페이지 위치" },
+          { "name": "pSize", "in": "query", "required": false, "schema": { "type": "integer", "default": 100 }, "description": "페이지당 건수" },
+          { "name": "ATPT_OFCDC_SC_CODE", "in": "query", "required": false, "schema": { "type": "string" }, "description": "시도교육청구분코드" },
+          { "name": "SD_SCHUL_CODE", "in": "query", "required": false, "schema": { "type": "string" }, "description": "학교 코드" },
+          { "name": "MMEAL_SC_CODE", "in": "query", "required": false, "schema": { "type": "string" }, "description": "식사구분코드" },
+          { "name": "MLSV_YMD", "in": "query", "required": false, "schema": { "type": "string" }, "description": "급식일자 (YYYYMMDD)" },
+          { "name": "MLSV_FROM_YMD", "in": "query", "required": false, "schema": { "type": "string" }, "description": "급식 시작일자" },
+          { "name": "MLSV_TO_YMD", "in": "query", "required": false, "schema": { "type": "string" }, "description": "급식 종료일자" }
+        ],
+        "responses": {
+          "200": {
+            "description": "성공",
+            "content": {
+              "application/json": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
