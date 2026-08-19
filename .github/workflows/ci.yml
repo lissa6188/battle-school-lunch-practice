@@ -67,6 +67,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - name: Prepare .env for Compose
+        run: |
+          if [ -n "${{ secrets.NEIS_API_KEY }}" ]; then
+            echo "NEIS_API_KEY=${{ secrets.NEIS_API_KEY }}" > .env
+          else
+            echo "NEIS_API_KEY=" > .env
+            echo "Warning: NEIS_API_KEY not provided; using empty value."
+          fi
       - name: Validate Compose configuration
         if: ${{ hashFiles('compose.yml', 'compose.yaml', 'docker-compose.yml', 'docker-compose.yaml') != '' }}
         run: docker compose config
