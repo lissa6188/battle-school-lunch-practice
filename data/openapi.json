@@ -1,0 +1,29 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "School Lunch API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/schools": {
+      "get": {
+        "summary": "Search schools by partial name",
+        "parameters": [
+          { "name": "query", "in": "query", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": { "200": { "description": "List of schools" } }
+      }
+    },
+    "/api/meals": {
+      "get": {
+        "summary": "Get meals for a school and date range",
+        "parameters": [
+          { "name": "school_code", "in": "query", "required": true, "schema": { "type": "string" } },
+          { "name": "start_date", "in": "query", "required": true, "schema": { "type": "string", "format": "date" } },
+          { "name": "end_date", "in": "query", "required": true, "schema": { "type": "string", "format": "date" } }
+        ],
+        "responses": { "200": { "description": "List of meal days" } }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 16px; }
+.container { max-width: 900px; margin: 0 auto; }
+.search input { padding: 8px; width: 60%; }
+.search button { padding: 8px 12px; margin-left: 8px; }
+.schools { list-style: none; padding: 0; }
+.schools li { padding: 8px; cursor: pointer; border-bottom: 1px solid #eee; }
+.schools li.selected { background: #f0f8ff; }
+.filter { margin-top: 12px; }
+.filter label { margin-right: 12px; }
+.results { margin-top: 16px; }
+.meal-card { border: 1px solid #ddd; padding: 8px; margin-bottom: 8px; }
+.error { color: #b00020; margin-top: 8px; }
