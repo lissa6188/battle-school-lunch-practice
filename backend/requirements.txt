@@ -1,6 +1,6 @@
 fastapi>=0.95
 uvicorn[standard]>=0.22
-python-dateutil>=2.8
+python-dateutil>=2.9.0.post0
 httpx>=0.23
 pytest>=7.0
 pytest-asyncio>=0.21
